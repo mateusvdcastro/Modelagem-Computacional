@@ -6,8 +6,6 @@ import random as rd
 # Considera que a população cresce a uma razão Alpha na ausência de fatores limitantes
 # P é a ppulação de predadores
 
-print("Hello world")
-
 i = 0
 t = 5000 # tempo
 k = 200 # representa a capacidade de suporte do ambiente (saturação)
@@ -21,31 +19,106 @@ class Especie:
         self.k = k
         self.vetor = [N]
 
-# class Plots:
-#     def __init__(self, grama=None, coelho=None, oncas=None, vacas=None, joaninhas=None, coruja=None):
-#         self.grama = grama
-#         self.coelho = coelho
-#         self.oncas = oncas
-#         self.vacas = vacas
-#         self.joaninhas = joaninhas
-#         self.coruja = coruja
+class Plots:
+    def __init__(self, plantas=None, rato=None, oncas=None, vacas=None, joaninhas=None, coruja=None):
+        self.plantas = plantas
+        self.rato = rato
+        self.oncas = oncas
+        self.vacas = vacas
+        self.joaninhas = joaninhas
+        self.coruja = coruja
+
+    def individuosPeloTempo(self, plantas=None, rato=None, oncas=None, vacas=None, joaninhas=None, coruja=None):
+        """
+        Plota o gráfico de N(t)
+        """
+        # Plota o gráfico de cada indivíduo em função do tempo
+        plt.plot(T, plantas, label='Plantas')
+        plt.plot(T, rato, label='Coelho')
+        plt.plot(T, oncas, label='Oncas')
+        plt.plot(T, vacas, label='Vacas')
+        plt.plot(T, joaninhas, label='Joaninhas')
+        plt.plot(T, coruja, label='Corujas')
+        plt.xlabel('Tempo')
+        plt.ylabel('Espécies')
+        plt.title("Plot por Espécies")
+        plt.legend()
+
     
-#     def PlotGeral(self, grama=None, predador=None, presas=None):
-#         plt.plot(T, grama, label='Grama')
-#         plt.plot(T, predador, label='Predador')
-#         plt.plot(T, presas, label='Presas')
-#         plt.legend()
-#         plt.show()
+    def PlotGeral(self, plantas=None, rato=None, oncas=None, vacas=None, joaninhas=None, coruja=None):
+        fig, ax = plt.subplots(2, 2)
+        ax[0, 0].plot(T, plantas, 'r', label='Grama')
+        ax[0, 0].plot(T, rato, 'b', label='Coelho')
+        ax[0, 0].plot(T, oncas, 'g', label='Oncas')
+        ax[0, 0].plot(T, vacas, 'y', label='Vacas')
+        ax[0, 0].plot(T, joaninhas, 'c', label='Joaninhas')
+        ax[0, 0].plot(T, coruja, 'm', label='Coruja')
+        ax[0, 0].set_xlabel('Tempo (dias)')
+        ax[0, 0].set_ylabel('Número de indivíduos')
+        ax[0, 0].legend()
+        ax[0, 0].set_title('População')
+
+        ax[0, 1].plot(T, plantas, 'r', label='Grama')
+        ax[0, 1].plot(T, rato, 'b', label='Coelho')
+        ax[0, 1].plot(T, oncas, 'g', label='Oncas')
+        ax[0, 1].plot(T, vacas, 'y', label='Vacas')
+        ax[0, 1].plot(T, joaninhas, 'c', label='Joaninhas')
+        ax[0, 1].plot(T, coruja, 'm', label='Coruja')
+        ax[0, 1].set_xlabel('Tempo (dias)')
+        ax[0, 1].set_ylabel('Número de indivíduos')
+        ax[0, 1].legend()
+        ax[0, 1].set_title('População')
+
+        ax[1, 0].plot(T, plantas, 'r', label='Grama')
+        ax[1, 0].plot(T, rato, 'b', label='Coelho')
+        ax[1, 0].plot(T, oncas, 'g', label='Oncas')
+        ax[1, 0].plot(T, vacas, 'y', label='Vacas')
+        ax[1, 0].plot(T, joaninhas, 'c', label='Joaninhas')
+        ax[1, 0].plot(T, coruja, 'm', label='Coruja')
+        ax[1, 0].set_xlabel('Tempo (dias)')
+        ax[1, 0].set_ylabel('Número de indivíduos')
+        ax[1, 0].legend()
+        ax[1, 0].set_title('População')
+
+        ax[1, 1].plot(T, plantas, 'r', label='Grama')
+        ax[1, 1].plot(T, rato, 'b', label='Coelho')
+        ax[1, 1].plot(T, oncas, 'g', label='Oncas')
+        ax[1, 1].plot(T, vacas, 'y', label='Vacas')
+        ax[1, 1].plot(T, joaninhas, 'c', label='Joaninhas')
+        ax[1, 1].plot(T, coruja, 'm', label='Coruja')
+        ax[1, 1].set_xlabel('Tempo (dias)')
+        ax[1, 1].set_ylabel('Número de indivíduos')
+        ax[1, 1].legend()
+        ax[1, 1].set_title('População')
+        plt.legend()
+        plt.show()
+    
+    def Volterra(self, plantas=None, rato=None, oncas=None, vacas=None, joaninhas=None, coruja=None):
+        """
+        Plota o gráfico de LOTKA-VOLTERRA
+
+        """
+        
+        plt.plot(joaninhas, plantas, label='--')
+        plt.plot(oncas, rato, label='--')
+        plt.plot(oncas, vacas, label='--')
+        plt.plot(plantas, joaninhas, label='--')
+        plt.plot(joaninhas, coruja, label='--')
+        plt.xlabel('Espécies')
+        plt.ylabel('Espécies')
+        plt.title("Gráfico de Lotka-Volterra")
+        plt.legend()
+
 
 if __name__ == "__main__":
 
-    # Cria os coeficientes do ambiente grama
+    # Cria o ambiente planta e seus coeficientes
 
-    grama = Especie(N=15, p=[10, 0.1, 0.1, 0.2], k=100)
+    plantas = Especie(N=15, p=[10, 0.1, 0.1, 0.2], k=100)
 
-    # Cria a espécie coelhos e seus coeficientes
+    # Cria a espécie dos ratos e seus coeficientes
 
-    coelho = Especie(N=23, p=[1.75, 0.175, 0.9], k=50)
+    rato = Especie(N=23, p=[1.75, 0.175, 0.9], k=50)
 
     # Cria a espécie coelhos e seus coeficientes
 
@@ -66,35 +139,35 @@ if __name__ == "__main__":
     while(i < t-1):
         i += 1
 
-        grama.N = grama.vetor[i - 1] + grama.vetor[i - 1] * (grama.p[0] * (1 - grama.vetor[i - 1] / grama.k) - grama.p[1]*coelho.vetor[i - 1] - grama.p[2]*joaninha.vetor[i - 1] - grama.p[3]*vacas.vetor[i - 1]) * deltaT
+        plantas.N = plantas.vetor[i - 1] + plantas.vetor[i - 1] * (plantas.p[0] * (1 - plantas.vetor[i - 1] / plantas.k) - plantas.p[1]*rato.vetor[i - 1] - plantas.p[2]*joaninha.vetor[i - 1] - plantas.p[3]*vacas.vetor[i - 1]) * deltaT
 
-        if (grama.N < 0):
-            grama.N = 0
+        if (plantas.N < 0):
+            plantas.N = 0
 
-        grama.vetor.append(grama.N)
+        plantas.vetor.append(plantas.N)
 
-        coelho.N = coelho.vetor[i-1] + coelho.vetor[i-1] * (coelho.p[1] * grama.vetor[i - 1] - coelho.p[2] * oncas.vetor[i - 1] - coelho.p[0]) * deltaT
+        rato.N = rato.vetor[i-1] + rato.vetor[i-1] * (rato.p[1] * plantas.vetor[i - 1] - rato.p[2] * oncas.vetor[i - 1] - rato.p[0]) * deltaT
 
-        if (coelho.N < 0):
-            coelho.N = 0
+        if (rato.N < 0):
+            rato.N = 0
 
-        coelho.vetor.append(coelho.N)
+        rato.vetor.append(rato.N)
 
-        oncas.N = oncas.vetor[i-1] + oncas.vetor[i-1] * (oncas.p[1] * coelho.vetor[i - 1] + oncas.p[2]* vacas.vetor[i - 1] - oncas.p[0]) * deltaT
+        oncas.N = oncas.vetor[i-1] + oncas.vetor[i-1] * (oncas.p[1] * rato.vetor[i - 1] + oncas.p[2]* vacas.vetor[i - 1] - oncas.p[0]) * deltaT
 
         if (oncas.N < 0):
             oncas.N = 0
         
         oncas.vetor.append(oncas.N)
 
-        vacas.N = vacas.vetor[i-1] + vacas.vetor[i-1] * (vacas.p[1] * grama.vetor[i - 1] - vacas.p[2]*oncas.vetor[i - 1] - vacas.p[0]) * deltaT
+        vacas.N = vacas.vetor[i-1] + vacas.vetor[i-1] * (vacas.p[1] * plantas.vetor[i - 1] - vacas.p[2]*oncas.vetor[i - 1] - vacas.p[0]) * deltaT
 
         if (vacas.N < 0):
             vacas.N = 0
 
         vacas.vetor.append(vacas.N)
 
-        joaninha.N = joaninha.vetor[i-1] + joaninha.vetor[i-1] * (joaninha.p[1] * grama.vetor[i - 1] - joaninha.p[2] * coruja.vetor[i - 1] - joaninha.p[0]) * deltaT
+        joaninha.N = joaninha.vetor[i-1] + joaninha.vetor[i-1] * (joaninha.p[1] * plantas.vetor[i - 1] - joaninha.p[2] * coruja.vetor[i - 1] - joaninha.p[0]) * deltaT
 
         if (joaninha.N < 0):
             joaninha.N = 0
@@ -108,27 +181,13 @@ if __name__ == "__main__":
         
         coruja.vetor.append(coruja.N)
 
-    # Plota o gráfico de cada indivíduo em função do tempo
-    plt.plot(T, grama.vetor, label='Grama')
-    plt.plot(T, coelho.vetor, label='Coelho')
-    plt.plot(T, oncas.vetor, label='Oncas')
-    plt.plot(T, vacas.vetor, label='Vacas')
-    plt.plot(T, joaninha.vetor, label='Joaninhas')
-    plt.plot(T, coruja.vetor, label='Corujas')
-    plt.xlabel('Tempo')
-    plt.ylabel('Espécies')
-    plt.title("Plot por Espécies")
-    plt.legend()
+    # grama=None, coelho=None, oncas=None, vacas=None, joaninhas=None, coruja=None
+    graficos = Plots()
 
-    # # Plota o gráfico de LOTKA-VOLTERRA
-    # plt.plot(joaninha.vetor, grama.vetor, label='--')
-    # plt.plot(oncas.vetor, coelho.vetor, label='--')
-    # plt.plot(oncas.vetor, vacas.vetor, label='--')
-    # plt.plot(grama.vetor, joaninha.vetor, label='--')
-    # plt.plot(joaninha.vetor, coruja.vetor, label='--')
-    # plt.xlabel('Espécies')
-    # plt.ylabel('Espécies')
-    # plt.title("Gráfico de Lotka-Volterra")
-    # plt.legend()
+    graficos.individuosPeloTempo(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor, vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
+   
+    graficos.PlotGeral(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor, vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
+
+    graficos.Volterra(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor, vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
 
     plt.show()
