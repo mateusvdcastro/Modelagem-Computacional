@@ -272,16 +272,16 @@ if __name__ == "__main__":
 
     graficos = Plots()
 
-    # graficos.individuosPeloTempo(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor,
-    #                              vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
+    graficos.individuosPeloTempo(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor,
+                                 vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
 
-    # graficos.PlotGeral(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor,
-    #                    vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
+    graficos.PlotGeral(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor,
+                       vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
 
-    # graficos.Volterra(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor,
-    #                   vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
+    graficos.Volterra(plantas=plantas.vetor, rato=rato.vetor, oncas=oncas.vetor,
+                      vacas=vacas.vetor, joaninhas=joaninha.vetor, coruja=coruja.vetor)
 
-    graficos.DoencaRato(ratos=vacas.vetor)
+    # graficos.DoencaRato(ratos=vacas.vetor)
 
     plt.show()
     plt.close()
