@@ -1,0 +1,33 @@
+S = Suscetíveis
+I = Infectados
+R = Recuperados
+r = taxa de infecção
+a = taxa de recuperados
+
+dS/dt = -rSI => Taxa de indivíduos Suscetíveis
+dI/dt = rSI - aI => Taxa de indivíduos Infectados
+dR/dt = aI => Taxa de indivíduos Recuperados
+
+S.N = S.No + S.No(-rSI)dt => População de indivíduos Suscetíveis
+S.I = S.i0 + S.Io(rSI - aI)dt => População de indivíduos Infectados
+dR/dt = S.Ro + S.Ro(aI)dt => População de indivíduos Recuperados
+
+dS/dt + dI/dt + dR/dt = 0
+
+
+Cenário Inicial t = 0:
+S(0) = So         So + Io = N
+I(0) = Io
+R(0) = 0
+
+considerando os valores de r, a, S0 e I0, haverá
+uma epidemia?
+
+Basicamente, precisamos avaliar se I(t) > Io
+
+Avaliar a evolução de I
+
+1) Se S < a/r temos: dI/dt < 0  
+2) Se S > a/r temos: dI/dt > 0
+
+
